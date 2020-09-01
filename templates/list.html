@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static%}
+{% load util %}
+{% block content%}
+<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+    <div class="tittle-head">
+        <h4 class="latest-text">Translator </h4>
+        <div class="container">
+            <div class="agileits-single-top">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Translator / {{ object }}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#serie" id="serie-tab" role="tab" data-toggle="tab" aria-controls="serie" aria-expanded="true">PHIM BỘ</a></li>
+                <li role="presentation" class=""><a href="#movie" role="tab" id="movie-tab" data-toggle="tab" aria-controls="movie" aria-expanded="false">PHIM LẺ</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="serie" aria-labelledby="serie-tab">
+                    <div class="agile-news-table">
+                        <div class="w3ls-news-result">
+                        </div>
+                        <table id="table-breakpoint">
+                            <thead>
+                              <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Year</th>
+                                <th>Status</th>
+                                <th>Views</th>
+                                <th>Genre</th>
+                                <th>Rating</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in episode_list %}
+                              <tr>
+                                <td data-th="No."><span class="bt-content">{{ forloop.counter }}</span></td>
+                                <td class="w3-list-img" data-th="Movie Name"><span class="bt-content"><a href="{{ item.get_absolute_url }}"><img class="small-poster" src="{{ item.season.poster_url }}" alt="{{ item.title}}"> <span>{{ item.title}}</span></a></span></td>
+                                <td data-th="Year"><span class="bt-content">{{ item.season.year}}</span></td>
+                                <td data-th="Status"><span class="bt-content">{{ item.season.get_status_display }}</span></td>
+                                <td class="w3-list-info" data-th="Country"><span class="bt-content">{{ item.views }}</span></td>
+                                <td class="w3-list-info" data-th="Genre"><span class="bt-content">{% for cate in item.season.serie.category.all %}
+									<a href="{{ cate.get_absolute_url }}" class="badge badge-pill badge-danger">{{ cate }}</a>
+									{% endfor %}</span></td>
+                                <td data-th="Rating"><span class="bt-content">{{ item.imdb }}</span></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="movie" aria-labelledby="movie-tab">
+                    <div class="agile-news-table">
+                        <div class="w3ls-news-result">
+                        </div>
+                        <table id="table-breakpoint1">
+                            <thead>
+                              <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Year</th>
+                                <th>Status</th>
+                                <th>Views</th>
+                                <th>Genre</th>
+                                <th>Rating</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in movie_list %}
+                                <tr>
+                                  <td data-th="No."><span class="bt-content">{{ forloop.counter }}</span></td>
+                                  <td class="w3-list-img" data-th="Movie Name"><span class="bt-content"><a href="{{ item.get_absolute_url }}"><img class="small-poster" src="{{ item.poster_url}}" alt="{{ item.title}}"> <span>{{ item.title}}</span></a></span></td>
+                                  <td data-th="Year"><span class="bt-content">{{ item.year}}</span></td>
+                                  <td data-th="Status"><span class="bt-content">{{ item.get_status_display }}</span></td>
+                                  <td class="w3-list-info" data-th="Country"><span class="bt-content">{{ item.views }}</span></td>
+                                  <td class="w3-list-info" data-th="Genre"><span class="bt-content">{% for cate in item.category.all %}
+                                      <a href="{{ cate.get_absolute_url }}" class="badge badge-pill badge-danger">{{ cate }}</a>
+                                      {% endfor %}</span></td>
+                                  <td data-th="Rating"><span class="bt-content">{{ item.imdb }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}

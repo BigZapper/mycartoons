@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="single-page-agile-main">
+    <div class="container">
+        <!-- /w3l-medile-movies-grids -->
+        <div class="agileits-single-top">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'core:serie' object.serie.slug %}">{{ object.serie }}</a></li>
+                <li class="active">Mùa {{ object.season_number }}</li>
+            </ol>
+        </div>
+        <div class="single-page-agile-info">
+            <!-- /movie-browse-agile -->
+            <div class="show-top-grids-w3lagile">
+                <div class="row">
+                    <div class="col-sm-7 single-left">
+                        <div class="song-grid-right">
+                            <div class="share">
+                                <h5>Thông tin về phim</h5>
+                                <div class="single-right-grids">
+                                    <div class="col-md-6 single-right-grid-left ">
+                                        <a href="{{ object.get_absolute_url }}"><img class="poster-season"
+                                                src="{{ object.poster_url }}" alt="" /></a>
+                                    </div>
+                                    <div class="col-md-6 single-right-grid-right">
+                                        <a href="{{ object.get_absolute_url }}" class="title">
+                                            {{ object.serie }} Season {{ object.season_number }}</a>
+                                        <p class="author"><strong>Năm: </strong>{{ object.year }}</p>
+                                        <p class="author"><strong>Trạng thái: </strong>{{ object.get_status_display }} 
+                                        </p>
+                                        <p class="views"><strong>Số tập: </strong>{{ object.episode_total }}</p>
+                                        <p class="views"><strong>Lượt xem: </strong>{{ object.views }}</p>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-8">
+                        <h3 class="choice">Chọn tập:</h3>
+                        <ul class="list-group">
+                            {% for episode in episode_list %}
+                            <li class="list-group-item list-group-item-dark">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4 col-sm-2">
+                                        <a href="{{ episode.get_absolute_url }}" class="ep">
+                                            <img src="{{ episode.thumbnail_url }}"
+                                                class="card-img" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-sm-10">
+                                        <a href="{{ episode.get_absolute_url }}">
+                                        </a>
+                                        <div class="card-body"><a href="/serie/{{ episode.season.serie.slug }}/{{ episode.season.slug }}/{{ episode.slug }}">
+                                                <!-- <h5 class="card-title">Tập 1</h5> -->
+                                                <p class="tip">
+                                                    Tập {{ episode.ep_number }}
+                                                </p>
+                                                <p class="card-text">{{ episode.title }}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% comment %} <li class="list-group-item list-group-item-dark"><a href="">
+                                </a>
+                                <div class="row no-gutters"><a href="">
+                                    </a>
+                                    <div class="col-md-4"><a href="">
+                                        </a><a href="" class="ep">
+                                            <img src="https://m.media-amazon.com/images/M/MV5BNzMxYzRmNTQtM2IzNS00NWY2LWEzZmQtNzczNDQ1ZmRmOGM0XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX224_CR0,0,224,126_AL_.jpg"
+                                                class="card-img" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <a href="">
+                                        </a>
+                                        <div class="card-body"><a href="">
+                                                <!-- <h5 class="card-title">Tập 1</h5> -->
+                                                <p class="tip">
+                                                    Mùa 1 Tập 1
+                                                </p>
+                                                <p class="card-text">Space Pilot 3000</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li> {% endcomment %}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="song-grid-right">
+                    <div class="share">
+                        <h5>Chọn season</h5>
+                        <div id="owl-demo" class="owl-carousel owl-theme">
+                        {% for season in season_list %}
+                            <div class="item">
+                                <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                                    <a href="{{ season.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img src="{{ season.poster_url }}"
+                                            title="{{ season }}" class="img-responsive" alt=" " />
+                                        <div class="w3l-action-icon"><i class="fa fa-play-circle"
+                                                aria-hidden="true"></i></div>
+                                    </a>
+                                    <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                        <div class="w3l-movie-text">
+                                            <h6><a href="{{ season.get_absolute_url }}">{{ season }}</a></h6>
+                                        </div>
+                                        <div class="mid-2 agile_mid_2_home">
+                                            <p>{{ season.year }}</p>
+                                            <div class="block-stars">
+                                                <ul class="w3l-ratings">
+                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                    </li>
+                                                    <li><a href="#"><i class="fa fa-star-half-o"
+                                                                aria-hidden="true"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="ribben">
+                                        <p>NEW</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+
+
+            </div>
+
+
+
+
+            <div class="clearfix"> </div>
+            <div class="share">
+                <h5>Xem phim khác</h5>
+
+            </div>
+        </div>
+        <!-- //movie-browse-agile -->
+        <!--body wrapper start-->
+        <div class="w3_agile_banner_bottom_grid">
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                    <div class="w3_agile_featured_movies">
+                        {% for serie in serie_list %}
+						<div class="col-md-2 w3l-movie-gride-agile">
+							<a href="{{ serie.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img src="{{ serie.poster_url }}"
+									title="{{ serie }}" class="img-responsive" alt=" ">
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{ serie.get_absolute_url }}">{{ serie }}</a></h6>
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ serie.year }}</p>
+									<div class="block-stars">
+										<ul class="w3l-ratings">
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+											</li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="ribben">
+								<p>NEW</p>
+							</div>
+						</div>
+						{% endfor %}
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--body wrapper end-->
+
+
+
+
+
+    </div>
+    <!-- //w3l-latest-movies-grids -->
+</div>
+</div>
+<!-- //w3l-medile-movies-grids -->
+
+{% endblock content %}

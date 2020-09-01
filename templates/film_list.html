@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static%}
+{% load util %}
+{% block content%}
+<div class="general-agileits-w3l">
+	<div class="w3l-medile-movies-grids">
+
+		<!-- /movie-browse-agile -->
+
+		<div class="movie-browse-agile">
+			<!--/browse-agile-w3ls -->
+			<div class="browse-agile-w3ls general-w3ls">
+				<div class="tittle-head">
+					<h4 class="latest-text">{{ object_list.0.get_typ_display }} </h4>
+					<div class="container">
+						<div class="agileits-single-top">
+							<ol class="breadcrumb">
+								<li><a href="/">Home</a></li>
+								<li class="active">{{ object_list.0.get_typ_display }}</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="browse-inner">
+						{% for serie in object_list %}
+						<div class="col-md-2 w3l-movie-gride-agile">
+							<a href="{{ serie.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+									src="{{ serie.poster_url }}" title="{{ serie.title }}" class="img-responsive"
+									alt=" " />
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{ serie.get_absolute_url }}">{{ serie.title }}</a></h6>
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ serie.year }}</p>
+									<div class="block-stars">
+									</div>
+									{% for cate in serie.category.all %}
+									<a href="{{ cate.get_absolute_url }}" class="badge badge-pill badge-danger">{{ cate }}</a>
+									{% endfor %}
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="nhan">
+								<p class="status">{{ serie.get_status_display }}</p>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+			<!--//browse-agile-w3ls -->
+			{% if is_paginated %}
+			<div class="blog-pagenat-wthree">
+				<ul>
+					{% if page_obj.has_previous %}
+					<li><a class="frist" href="?page=1"><<</a></li>
+					<li><a href="?page={{ page_obj.previous_page_number }}"><</a></li>
+					{% endif %}
+					<li><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+					{% if page_obj.has_next %}
+					<li><a href="?page={{ page_obj.next_page_number }}">></a></li>
+					<li><a class="last" href="?page={{ page_obj.paginator.num_pages }}">>></a></li>
+					{% endif %}
+				</ul>
+				<span class="text-center">
+					{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+				</span>
+			</div>
+			
+			{% endif %}
+		</div>
+		<!-- //movie-browse-agile -->
+	</div>
+	<!-- //w3l-medile-movies-grids -->
+</div>
+{% endblock content%}

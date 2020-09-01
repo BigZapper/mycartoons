@@ -1,0 +1,134 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="single-page-agile-main">
+<div class="container">
+		<!-- /w3l-medile-movies-grids -->
+			<div class="agileits-single-top">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+					<li>{{ object.title }}</li>
+				</ol>
+			</div>
+			<div class="single-page-agile-info">
+                   <!-- /movie-browse-agile -->
+                           <div class="show-top-grids-w3lagile">
+				<div class="col-sm-8 single-left">
+					<div class="song">
+						<div class="song-info">
+							<h3>{{ object.title }}</h3>	
+					</div>
+						<div class="video-grid-single-page-agileits">
+							<div data-video="dLmKio67pVQ" id="video"> <img src="{{ object.banner_url }}" alt="" class="img-responsive" /> </div>
+						</div>
+					</div>
+					<div class="song-grid-right">
+						<div class="share">
+							<h5>Thông tin về phim</h5>
+							<div class="single-right-grids">
+							<div class="col-md-4 single-right-grid-left ">
+								<a href="{{ object.get_absolute_url }}"><img class="poster" src="{{ object.poster_url }}" alt="" /></a>
+							</div>
+							<div class="col-md-8 single-right-grid-right">
+								<a href="{{ object.get_absolute_url }}" class="title"> {{ object.title }}</a>
+								<p class="author"><strong>IMDB: </strong><i class="fa fa-imdb" style="color:yellow;"></i>{{ serie.imdb }}</p>
+								<p class="author"><strong>Năm: </strong>{{ serie.year }}</p>
+								<p class="author"><strong>Trạng thái: </strong>{{ serie.get_status_display }}</p>								
+								<p class="author"><strong>Tác giả: </strong>{{ serie.created_by }}</p>								
+								<p class="author"><strong>Thể loại: </strong>{% for cate in serie.category.all %}
+									<a href="{{ cate.get_absolute_url }}" >{{ cate }}, </a>
+									{% endfor %}</p>
+								<p class="views"><strong>Nội dung: </strong>{{ object.description }}</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						</div>
+					</div>
+					<div class="song-grid-right">
+						<div class="share">
+							<h5>Chọn season</h5>
+							
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+
+					<div class="all-season">
+                        {% for season in season_list %}
+						<div class="col-md-2 single-right-grid-left text-center season">
+								<a href="{{ season.get_absolute_url }}"><img src="{{ season.poster_url }}" alt=""><p>Season {{ season.season_number }}</p></a>
+						</div>
+                        {% endfor %}
+					</div>
+				</div>
+				<div class="col-md-4 single-right">
+					<h3>Up Next</h3>
+					<div class="single-grid-right">
+                        {% for serie in serie_list %}
+						<div class="single-right-grids">
+							<div class="col-md-4 single-right-grid-left">
+								<a href="{{ serie.get_absolute_url }}"><img src="{{ serie.poster_url }}" alt="" /></a>
+							</div>
+							<div class="col-md-8 single-right-grid-right">
+								<a href="{{ serie.get_absolute_url }}" class="title"> {{ serie.title }}</a>
+								<p class="author"><a href="#" class="author">{{ serie.year }}</a></p>
+								<p class="views">{{ serie.views }} views</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+                        {% endfor %}
+
+					</div>
+				</div>
+				
+
+				
+				<div class="clearfix"> </div>
+			</div>
+				<!-- //movie-browse-agile -->
+				<!--body wrapper start-->
+			<div class="w3_agile_banner_bottom_grid">
+				<div id="owl-demo" class="owl-carousel owl-theme">
+				{% for movie in movie_list %}
+					<div class="item">
+						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+							<a href="{{ movie.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img src="{{ movie.poster_url }}" title="{{ movie.title }}" class="img-responsive" alt=" " />
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a></h6>							
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ movie.year }}</p>
+									<div class="block-stars">
+										<ul class="w3l-ratings">
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="ribben">
+								<p>NEW</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		<!--body wrapper end-->
+						
+							 
+				</div>
+				<!-- //w3l-latest-movies-grids -->
+			</div>	
+		</div>
+	<!-- //w3l-medile-movies-grids -->
+
+{% endblock content %}

@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- single -->
+<div class="single-page-agile-main">
+	<div class="container">
+		<!-- /w3l-medile-movies-grids -->
+		<div class="agileits-single-top">
+			<ol class="breadcrumb">
+				<li><a href="/">Home</a></li>
+				<li><a href="{% url 'core:serie' object.season.serie.slug %}">{{ object.season.serie }}</a></li>
+				<li><a href="{{object.season.get_absolute_url}}">Mùa {{ object.season.season_number }}</a></li>
+				<li class="active">Tập {{ object.ep_number }}: {{ object.title }}</li>
+			</ol>
+		</div>
+		<div class="single-page-agile-info">
+			<!-- /movie-browse-agile -->
+			<div class="show-top-grids-w3lagile">
+				<div class="row">
+					<div class="col-sm-8 single-left" id="myDIV">
+						<div class="row">
+							{% if object.url_fb %}
+							<div itemscope itemtype="https://schema.org/VideoObject">
+								<meta itemprop="uploadDate"
+									content="Sun Aug 16 2020 21:09:08 GMT+0700 (Giờ Đông Dương)" />
+								<meta itemprop="name" content="Futurama Mùa 2 Tập 1" />
+								<div style="position:relative; overflow:hidden; padding-bottom:56.25%"> <iframe
+										src="https://cdn.jwplayer.com/players/{{ object.url_fb }}-4Kc0OEDF.html"
+										frameborder="0" scrolling="auto" title="{{ object.title }}"
+										style="position:absolute;" width="100%" height="100%" allowfullscreen></iframe>
+								</div>
+							</div>
+							{% else %}
+							<iframe id="iFrame1" src="https://playhydrax.com/?v={{ object.url_gd }}" frameborder="0"
+								scrolling="0" title="{{ object.title }}" allowfullscreen></iframe>
+							{% endif %}
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<h4 style="color:white"><strong>Lượt xem: </strong>{{ object.views }}</h4>
+							</div>
+							<div class="col-md-6">
+								<h4 style="color:white"><strong>Vietsub bởi: </strong>{% for item in object.translator.all %} <a href="{{ item.get_absolute_url }}">{{ item }} {% endfor %}</a></h4>
+							</div>
+							<div class="col-md-4">
+								<h4 style="color:white"><strong>Rating: <i style="color:yellow" class="fa fa-imdb" aria-hidden="true"></i></strong>{{ object.imdb }}</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-8">
+						<ul class="list-group">
+							{% for episode in episode_list %}
+							{% if request.path == episode.get_absolute_url %}
+							<li class="list-group-item list-group-item-dark active">
+								<div class="row no-gutters">
+									<div class="col-md-4 col-sm-2">
+										<a href="{{ episode.get_absolute_url }}" class="ep">
+											<img src="{{ episode.thumbnail_url }}" class="card-img" alt="...">
+										</a>
+									</div>
+									<div class="col-md-8 col-sm-10">
+										<a href="">
+										</a>
+										<div class="card-body"><a href="{{ episode.get_absolute_url }}">
+												<!-- <h5 class="card-title">Tập 1</h5> -->
+												<p class="tip">
+													Tập {{ episode.ep_number }}
+												</p>
+												<p class="card-text">{{ episode.title }}</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							{% else %}
+							<li class="list-group-item list-group-item-dark">
+								<div class="row no-gutters">
+									<div class="col-md-4 col-sm-2">
+										<a href="{{ episode.get_absolute_url }}" class="ep">
+											<img src="{{ episode.thumbnail_url }}" class="card-img" alt="...">
+										</a>
+									</div>
+									<div class="col-md-8 col-sm-10">
+										<a href="">
+										</a>
+										<div class="card-body"><a href="{{ episode.get_absolute_url }}">
+												<!-- <h5 class="card-title">Tập 1</h5> -->
+												<p class="tip">
+													Tập {{ episode.ep_number }}
+												</p>
+												<p class="card-text">{{ episode.title }}</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							{% endif %}
+
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<div class="song-grid-right">
+					<div class="share">
+						<h5>Chọn season</h5>
+						<div id="owl-demo" class="owl-carousel owl-theme">
+							{% for season in season_list %}
+							<div class="item">
+								<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+									<a href="{{ season.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+											src="{{ season.poster_url }}" title="{{ season }}" class="img-responsive"
+											alt=" " />
+										<div class="w3l-action-icon"><i class="fa fa-play-circle"
+												aria-hidden="true"></i></div>
+									</a>
+									<div class="mid-1 agileits_w3layouts_mid_1_home">
+										<div class="w3l-movie-text">
+											<h6><a href="{{ season.get_absolute_url }}">{{ season }}</a></h6>
+										</div>
+										<div class="mid-2 agile_mid_2_home">
+											<p>{{ season.year }}</p>
+											<div class="block-stars">
+												<ul class="w3l-ratings">
+													<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+													</li>
+													<li><a href="#"><i class="fa fa-star-half-o"
+																aria-hidden="true"></i></a>
+													</li>
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="ribben">
+										<p>NEW</p>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+
+
+			</div>
+
+
+
+
+			<div class="clearfix"> </div>
+			<div class="share">
+				<h5>Xem phim khác</h5>
+
+			</div>
+		</div>
+		<!-- //movie-browse-agile -->
+		<!--body wrapper start-->
+		<div class="w3_agile_banner_bottom_grid">
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+					<div class="w3_agile_featured_movies">
+						{% for serie in serie_list %}
+						<div class="col-md-2 w3l-movie-gride-agile">
+							<a href="{{ serie.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+									src="{{ serie.poster_url }}" title="{{ serie }}" class="img-responsive" alt=" ">
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{ serie.get_absolute_url }}">{{ serie }}</a></h6>
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ serie.year }}</p>
+									<div class="block-stars">
+										<ul class="w3l-ratings">
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+											</li>
+										</ul>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="ribben">
+								<p>NEW</p>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--body wrapper end-->
+
+
+
+
+
+	</div>
+	<!-- //w3l-latest-movies-grids -->
+</div>
+</div>
+<script type="application/javascript">
+
+	function resizeIFrameToFitContent(iFrame) {
+
+		var elmnt = document.getElementById("myDIV");
+		iFrame.width = elmnt.offsetWidth - 20;
+		iFrame.height = (elmnt.offsetWidth - 20) * 9 / 16;
+	}
+
+	window.addEventListener('DOMContentLoaded', function (e) {
+
+		var iFrame = document.getElementById('iFrame1');
+		resizeIFrameToFitContent(iFrame);
+	});
+
+</script>
+<!-- //w3l-medile-movies-grids -->
+{% endblock content %}

@@ -1,0 +1,31 @@
+h3.choice {
+    color: white;
+    padding-bottom: 20px;
+    padding-top: 12px;
+}
+button.see-more {
+    background-color: #CEF836;
+    border: none;
+    border-radius: 0;
+    color: #020D18!important;
+    display: block;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: right;
+}
+button.see-more:hover {
+    background-color: #f87436;
+    border: none;
+    border-radius: 0;
+    color: #020D18!important;
+    display: block;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: right;
+}
+
+img.small-poster {
+    width: 10%;
+}

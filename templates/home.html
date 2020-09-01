@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- banner -->
+<div id="slidey" style="display:none;">
+	<ul>
+		{% for item in serie_list %}
+		<li><img src="{{ item.banner_url }}" alt=" ">
+			<p class='title'>{{ item.title }}</p>
+			<p class='description'> {{ item.description }}</p>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<script src="{% static 'js/jquery.slidey.js' %}"></script>
+<script src="{% static 'js/jquery.dotdotdot.min.js' %}"></script>
+<script type="text/javascript">
+	$("#slidey").slidey({
+		interval: 8000,
+		listCount: 5,
+		autoplay: false,
+		showList: true
+	});
+	$(".slidey-list-description").dotdotdot();
+</script>
+<!-- //banner -->
+<!-- banner-bottom -->
+<div class="banner-bottom">
+	<h4 class="latest-text w3_latest_text">Phim đang hot</h4>
+	<div class="container">
+		<div class="w3_agile_banner_bottom_grid">
+			<div id="owl-demo" class="owl-carousel owl-theme">
+				{% for item in serie_list %}
+				<div class="item">
+					<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+						<a href="{{ item.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+								src="{{ item.poster_url }}" title="{{ item.title }}" class="img-responsive" alt=" " />
+							<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+						</a>
+						<div class="mid-1 agileits_w3layouts_mid_1_home">
+							<div class="w3l-movie-text">
+								<h6><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h6>
+							</div>
+							<div class="mid-2 agile_mid_2_home">
+								<p>{{ item.year }}</p>
+								<div class="block-stars">
+								</div>
+								{% for cate in item.category.all %}
+								<a href="genres/{{ cate.slug }}" class="badge badge-pill badge-danger">{{ cate }}</a>
+								{% endfor %}
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div class="ribben">
+							<p>HOT</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //banner-bottom -->
+
+<!-- general -->
+<div class="general">
+	<h4 class="latest-text w3_latest_text">Phim bộ mới</h4>
+	<div class="container">
+		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+					<div class="w3_agile_featured_movies">
+						{% for item in object_list %}
+						<div class="col-md-2 w3l-movie-gride-agile">
+							<a href="{{ item.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+									src="{{ item.poster_url }}" title="{{ item.title }}" class="img-responsive"
+									alt=" " />
+								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+							</a>
+							<div class="mid-1 agileits_w3layouts_mid_1_home">
+								<div class="w3l-movie-text">
+									<h6><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h6>
+								</div>
+								<div class="mid-2 agile_mid_2_home">
+									<p>{{ item.year }}</p>
+									<div class="block-stars">
+
+									</div>
+									{% for cate in item.category.all %}
+									<a href="genres/{{ cate.slug }}"
+										class="badge badge-pill badge-danger">{{ cate }}</a>
+									{% endfor %}
+									<div class="clearfix"></div>
+								</div>
+							</div>
+							<div class="nhan">
+								<p class="status">{{ item.get_status_display }}</p>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button class="see-more"><a href="/series-list">Xem thêm</a></button>
+	</div>
+</div>
+<!-- //general -->
+<!-- Latest-tv-series -->
+<div class="Latest-tv-series">
+	<h4 class="latest-text w3_latest_text w3_home_popular">Phim lẻ hot</h4>
+	<div class="container">
+		<section class="slider">
+			<div class="flexslider">
+				<ul class="slides">
+					{% for topmovie in top_movie_list %}
+					<li>
+						<div class="agile_tv_series_grid">
+							<div class="col-md-6 agile_tv_series_grid_left">
+								<div class="w3ls_market_video_grid1">
+									<img src="{{ topmovie.banner_url }}" alt=" " class="img-responsive" />
+									<a class="w3_play_icon" href="#small-dialog{{ forloop.counter }}">
+										<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+									</a>
+								</div>
+							</div>
+							<div class="col-md-6 agile_tv_series_grid_right">
+								<p class="fexi_header">{{ topmovie.title }}</p>
+								<p class="fexi_header_para"><span class="conjuring_w3">Story Line<label></label></span>
+									{{ topmovie.description }}</p>
+								<p class="fexi_header_para"><span>Date of Release<label></label></span>
+									{{ topmovie.year }} </p>
+								<p class="fexi_header_para">
+									<span>Genres<label></label> </span>
+									{% for cate in topmovie.category.all %}
+									<a href="genres/{{ cate.slug }}">{{ cate }}</a>
+									{% endfor %}
+								</p>
+								<p class="fexi_header_para fexi_header_para1"><span>Star Rating<label></label></span>
+									{{ topmovie.imdb }}
+								</p>
+							</div>
+							<div class="clearfix"> </div>
+							<div class="agileinfo_flexislider_grids">
+								{% for movie in top_movie_list %}
+								<div class="col-md-2 w3l-movie-gride-agile">
+									<a href="{{ movie.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
+											src="{{ movie.poster_url }}" title="{{ movie.title }}"
+											class="img-responsive" alt=" " />
+										<div class="w3l-action-icon"><i class="fa fa-play-circle"
+												aria-hidden="true"></i></div>
+									</a>
+									<div class="mid-1 agileits_w3layouts_mid_1_home">
+										<div class="w3l-movie-text">
+											<h6><a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a></h6>
+										</div>
+										<div class="mid-2 agile_mid_2_home">
+											<p>{{ movie.year }}</p>
+											<div class="block-stars">
+
+											</div>
+											{% for cate in movie.category.all %}
+											<a href="genres/{{ cate.slug }}"
+												class="badge badge-pill badge-danger">{{ cate }}</a>
+											{% endfor %}
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="ribben">
+										<p>NEW</p>
+									</div>
+								</div>
+								{% endfor %}
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</li>
+					<div id="small-dialog{{ forloop.counter }}" class="mfp-hide">
+						<iframe src="{{ topmovie.trailer }}"></iframe>
+					</div>
+					{% endfor %}
+				</ul>
+			</div>
+			<button class="see-more"><a href="/movies-list">Xem thêm</a></button>
+		</section>
+		<!-- flexSlider -->
+		<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" property="" />
+		<script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+		<script type="text/javascript">
+			$(window).load(function () {
+				$('.flexslider').flexslider({
+					animation: "slide",
+					start: function (slider) {
+						$('body').removeClass('loading');
+					}
+				});
+			});
+		</script>
+		<!-- //flexSlider -->
+	</div>
+</div>
+<!-- pop-up-box -->
+<script src="{% static 'js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+<!--//pop-up-box -->
+
+
+<script>
+	$(document).ready(function () {
+		$('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+			type: 'inline',
+			fixedContentPos: false,
+			fixedBgPos: true,
+			overflowY: 'auto',
+			closeBtnInside: true,
+			preloader: false,
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});
+
+	});
+</script>
+<!-- //Latest-tv-series -->
+
+{% endblock content %}
