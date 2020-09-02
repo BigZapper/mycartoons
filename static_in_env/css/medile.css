@@ -387,7 +387,6 @@ ol.breadcrumb li a {
 @media (max-width:991px){
 	.w3l-movie-gride-agile {
 		text-align: center;
-		box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35);
 		margin-right: 0%;
 		margin-bottom: 3%;
 		position: relative;
