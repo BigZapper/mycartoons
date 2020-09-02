@@ -13,6 +13,7 @@ class HomeView(ListView):
         context['top_movie_list'] = Movie.objects.order_by('-publish_date')[:6]
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['genres_list'] = Category.objects.order_by('name')
+        context['episode_list'] = Episode.objects.order_by('-publish_date')[:6]
         return context
 
 
@@ -101,7 +102,7 @@ class SeasonView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['episode_list'] = Episode.objects.filter(season=self.object).order_by('id')
+        context['episode_list'] = Episode.objects.filter(season=self.object).order_by('ep_number')
         context['season_list'] = SerieSeason.objects.filter(serie=self.object.serie).order_by('id')
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['movie_list'] = Movie.objects.order_by('-publish_date')[:6]
@@ -122,8 +123,8 @@ class EpisodeView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['episode_list'] = Episode.objects.filter(season=self.object.season)
-        context['season_list'] = SerieSeason.objects.filter(serie=self.object.season.serie)
+        context['episode_list'] = Episode.objects.filter(season=self.object.season).order_by('ep_number')
+        context['season_list'] = SerieSeason.objects.filter(serie=self.object.season.serie).order_by('id')
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['movie_list'] = Movie.objects.order_by('-publish_date')[:6]
         context['genres_list'] = Category.objects.order_by('name')

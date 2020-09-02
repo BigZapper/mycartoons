@@ -32,7 +32,11 @@
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav>
 						<ul class="nav navbar-nav">
+							{% if request.path == "/" %}
 							<li class="active"><a href="/">Home</a></li>
+							{% else %}
+							<li><a href="/">Home</a></li>
+							{% endif %}
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Thể loại <b class="caret"></b></a>
 								<ul class="dropdown-menu multi-column columns-3">
@@ -48,8 +52,16 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="/series-list">Phim bộ</a></li>
-							<li><a href="/movies-list">Phim lẻ</a></li>
+							{% if request.path == "/movies-list/" %}
+							<li class="active"><a href="/series-list/">Phim bộ</a></li>
+							{% else %}
+							<li><a href="/movies-list/">Phim bộ</a></li>
+							{% endif %}
+							{% if request.path == "/series-list/" %}
+							<li class="active"><a href="/series-list/">Phim lẻ</a></li>
+							{% else %}
+							<li><a href="/series-list/">Phim lẻ</a></li>
+							{% endif %}
 							{% comment %} <li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b class="caret"></b></a>
 								<ul class="dropdown-menu multi-column columns-3">

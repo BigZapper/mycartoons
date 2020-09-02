@@ -21,11 +21,11 @@
                             <div class="share">
                                 <h5>Thông tin về phim</h5>
                                 <div class="single-right-grids">
-                                    <div class="col-md-6 single-right-grid-left ">
+                                    <div class="col-md-7 single-right-grid-left ">
                                         <a href="{{ object.get_absolute_url }}"><img class="poster-season"
                                                 src="{{ object.poster_url }}" alt="" /></a>
                                     </div>
-                                    <div class="col-md-6 single-right-grid-right">
+                                    <div class="col-md-5 single-right-grid-right">
                                         <a href="{{ object.get_absolute_url }}" class="title">
                                             {{ object.serie }} Season {{ object.season_number }}</a>
                                         <p class="author"><strong>Năm: </strong>{{ object.year }}</p>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-8">
+                    <div class="col-md-5 col-sm-8">
                         <h3 class="choice">Chọn tập:</h3>
                         <ul class="list-group">
                             {% for episode in episode_list %}

@@ -36,15 +36,15 @@
 								scrolling="0" title="{{ object.title }}" allowfullscreen></iframe>
 							{% endif %}
 						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<h4 style="color:white"><strong>Lượt xem: </strong>{{ object.views }}</h4>
-							</div>
-							<div class="col-md-6">
-								<h4 style="color:white"><strong>Vietsub bởi: </strong>{% for item in object.translator.all %} <a href="{{ item.get_absolute_url }}">{{ item }} {% endfor %}</a></h4>
+						<div class="row detail">
+							<div class="col-md-4">
+								<p style="color:white"><strong><i class="fa fa-eye"></i> </strong>　{{ object.views }}</p>
 							</div>
 							<div class="col-md-4">
-								<h4 style="color:white"><strong>Rating: <i style="color:yellow" class="fa fa-imdb" aria-hidden="true"></i></strong>{{ object.imdb }}</h4>
+								<p style="color:white"><strong><i style="color:yellow" class="fa fa-imdb" aria-hidden="true"> </i></strong>　{{ object.imdb }}</p>
+							</div>
+							<div class="col-md-4">
+								<p style="color:white"><strong>Vietsub bởi: </strong>{% for item in object.translator.all %} <a class="author" href="{{ item.get_absolute_url }}">{{ item }} {% endfor %}</a></p>
 							</div>
 						</div>
 					</div>

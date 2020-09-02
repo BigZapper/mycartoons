@@ -27,33 +27,31 @@
 <!-- //banner -->
 <!-- banner-bottom -->
 <div class="banner-bottom">
-	<h4 class="latest-text w3_latest_text">Phim đang hot</h4>
+	<h4 class="latest-text w3_latest_text">Tập mới cập nhật</h4>
 	<div class="container">
 		<div class="w3_agile_banner_bottom_grid">
 			<div id="owl-demo" class="owl-carousel owl-theme">
-				{% for item in serie_list %}
+				{% for item in episode_list %}
 				<div class="item">
 					<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
 						<a href="{{ item.get_absolute_url }}" class="hvr-shutter-out-horizontal"><img
-								src="{{ item.poster_url }}" title="{{ item.title }}" class="img-responsive" alt=" " />
+								src="{{ item.thumbnail_url }}" title="{{ item }}" class="img-responsive" alt=" " />
 							<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 						</a>
 						<div class="mid-1 agileits_w3layouts_mid_1_home">
 							<div class="w3l-movie-text">
-								<h6><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h6>
+								<h6><a href="{{ item.get_absolute_url }}">{{ item }}</a></h6>
 							</div>
 							<div class="mid-2 agile_mid_2_home">
-								<p>{{ item.year }}</p>
+								<p>{{ item.publish_date }}</p>
 								<div class="block-stars">
 								</div>
-								{% for cate in item.category.all %}
-								<a href="genres/{{ cate.slug }}" class="badge badge-pill badge-danger">{{ cate }}</a>
-								{% endfor %}
+								<p style="float:right; color:red;">{{ item.views }} Views</p>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 						<div class="ribben">
-							<p>HOT</p>
+							<p>NEW</p>
 						</div>
 					</div>
 				</div>

@@ -60,8 +60,10 @@
                                     <p class="author"><strong>Năm: </strong><a href="#"
                                             class="author">{{ object.year }}</a></p>
                                     <p class="author"><strong>Trạng thái: </strong>{{ object.get_status_display }}</p>
-                                    <p class="author"><strong>Thể loại: </strong>{{ object.get_category_display }}</p>
-                                    <p class="views"><strong>Nội dung: </strong>{{ object.story }}</p>
+                                    <p class="author"><strong>Thể loại: </strong>{% for cate in object.category.all %}
+                                        <a href="{{ cate.get_absolute_url }}" >{{ cate }}, </a>
+                                        {% endfor %}</p>
+                                    <p class="views"><strong>Nội dung: </strong>{{ object.description }}</p>
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>

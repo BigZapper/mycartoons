@@ -430,7 +430,7 @@ width:100%;
     margin-bottom: 1.5em;
 }
 .single-right-grid-left a img{
-    width:97%;
+    width:92%;
     padding-bottom: 10px;
 }
 .single-right-grid-right a.title {
@@ -635,10 +635,10 @@ width:100%;
     padding: 10px;
 }
 .list-group{
-    max-height: 500px;
+    max-height: 467.8px;
     margin-bottom: 10px;
-    overflow:auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    border-bottom: 1px solid #e8e8e8;
 }
 .list-group-item.active {
     z-index: 2;
