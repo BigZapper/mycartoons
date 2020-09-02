@@ -81,7 +81,7 @@ class SerieView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['season_list'] = SerieSeason.objects.filter(serie=self.object)
+        context['season_list'] = SerieSeason.objects.filter(serie=self.object).order_by('id')
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['movie_list'] = Movie.objects.order_by('-publish_date')[:6]
         context['genres_list'] = Category.objects.order_by('name')
@@ -101,8 +101,8 @@ class SeasonView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['episode_list'] = Episode.objects.filter(season=self.object)
-        context['season_list'] = SerieSeason.objects.filter(serie=self.object.serie)
+        context['episode_list'] = Episode.objects.filter(season=self.object).order_by('id')
+        context['season_list'] = SerieSeason.objects.filter(serie=self.object.serie).order_by('id')
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['movie_list'] = Movie.objects.order_by('-publish_date')[:6]
         context['genres_list'] = Category.objects.order_by('name')
