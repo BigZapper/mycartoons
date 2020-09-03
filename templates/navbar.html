@@ -53,14 +53,14 @@
 								</ul>
 							</li>
 							{% if request.path == "/movies-list/" %}
-							<li class="active"><a href="/series-list/">Phim bộ</a></li>
+							<li class="active"><a href="/movies-list/">Phim lẻ</a></li>
 							{% else %}
-							<li><a href="/movies-list/">Phim bộ</a></li>
+							<li><a href="/movies-list/">Phim lẻ</a></li>
 							{% endif %}
 							{% if request.path == "/series-list/" %}
-							<li class="active"><a href="/series-list/">Phim lẻ</a></li>
+							<li class="active"><a href="/series-list/">Phim bộ</a></li>
 							{% else %}
-							<li><a href="/series-list/">Phim lẻ</a></li>
+							<li><a href="/series-list/">Phim bộ</a></li>
 							{% endif %}
 							{% comment %} <li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b class="caret"></b></a>

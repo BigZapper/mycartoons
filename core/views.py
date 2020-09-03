@@ -10,7 +10,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['season'] = SerieSeason.objects.filter(serie=self.model).count()
+        context['top_movie_list'] = Movie.objects.order_by('-publish_date')[:6]
         context['serie_list'] = Serie.objects.order_by('-publish_date')[:6]
         context['genres_list'] = Category.objects.order_by('name')
         context['episode_list'] = Episode.objects.order_by('-id')[:10]
